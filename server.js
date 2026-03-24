@@ -10,6 +10,14 @@ const server = http
         res.writeHead(200, { "Content-Type": "text/html" });
         res.end(content);
       });
+    } else if (req.url === "/karsten-winegeart-0wra5yyvqje-unsplash-1831x1223.jpg"
+    ) {
+      fs.readFile(path.join(__dirname,"karsten-winegeart-0wra5yyvqje-unsplash-1831x1223.jpg",),(err, content) => {
+          if (err) throw err;
+          res.writeHead(200, { "Content-Type": "image/jpeg" });
+          res.end(content);
+        },
+      );
     } else if (req.url === "/api") {
       fs.readFile(path.join(__dirname, "db.json"), "utf-8", (err, content) => {
         if (err) throw err;
@@ -20,4 +28,4 @@ const server = http
       res.end("<h1> page does not exist </h1>");
     }
   })
-  .listen(process.env.PORT, () => console.log("server is running"));
+  .listen(process.env.PORT || 3000, () => console.log("server is running"));
